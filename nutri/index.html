@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NUTRO-SUPPLEMENT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#060911',
+                        cardBg: '#0f172a',
+                        goldBorder: '#d4af37',
+                        goldAccent: '#f5c518',
+                        goldSubtle: '#33290b'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Cairo', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --bg-main: #060911;
+            --card-bg: #0f172a;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-gold: #d4af37;
+            --hover-row: rgba(212, 175, 55, 0.08);
+            --modal-bg: #0d1220;
+        }
+        .light {
+            --bg-main: #f1f5f9;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border-gold: #b8860b;
+            --hover-row: rgba(184, 134, 11, 0.08);
+            --modal-bg: #ffffff;
+        }
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            font-family: 'Inter', 'Cairo', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-main);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #b8860b;
+            border-radius: 3px;
+        }
+        .gold-border-box {
+            border: 2px solid var(--border-gold);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
+            background-color: var(--card-bg);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        .gold-glow {
+            text-shadow: 0 0 10px rgba(245, 197, 24, 0.4);
+        }
+        .table-row-hover:hover {
+            background-color: var(--hover-row);
+            transform: scale(1.002);
+            transition: all 0.2s ease;
+        }
+
+        @keyframes rocketLaunch {
+            0% {
+                transform: translateY(0) scale(1) rotate(0deg);
+                opacity: 1;
+            }
+            30% {
+                transform: translateY(10px) scale(0.9) rotate(-10deg);
+            }
+            100% {
+                transform: translateY(-120px) scale(1.3) rotate(15deg);
+                opacity: 0;
+            }
+        }
+        .animate-rocket-launch {
+            animation: rocketLaunch 0.75s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-12 antialiased selection:bg-amber-500 selection:text-black">
+
+    <!-- Wrapped Header in a gold-border-box container -->
+    <header class="w-full max-w-7xl mx-auto px-2 sm:px-4 pt-6 pb-2">
+        <div class="gold-border-box rounded-2xl p-4 sm:p-6 backdrop-blur-md relative overflow-hidden">
+            <div class="flex flex-col md:flex-row items-center justify-center gap-4 relative">
+                <div class="absolute left-4 hidden lg:flex items-center gap-2 text-amber-400 text-3xl font-extrabold">
+                    <i class="fa-solid fa-dumbbell text-4xl text-amber-400 drop-shadow-md"></i>
+                </div>
+                <div class="text-center w-full relative">
+                    <!-- Top Row with Centered Badge and Theme Toggle locked to the far right -->
+                    <div class="relative flex items-center justify-center w-full max-w-xl mx-auto mb-2 px-2">
+                        <!-- Centered Badge -->
+                        <div class="inline-block px-4 py-1 rounded-full border border-amber-500/40 bg-amber-500/10 text-amber-400 text-xs font-bold tracking-widest uppercase">
+                            NUTRO-SUPPLEMENT
+                        </div>
+                        <!-- Sliding Theme Toggle Switch strictly fixed on the far right -->
+                        <div onclick="toggleTheme()" class="absolute right-0 w-14 h-7 bg-amber-950/40 border border-amber-500/40 rounded-full p-1 cursor-pointer flex items-center shadow-md transition-colors duration-300 flex-shrink-0" id="theme-switch-track" title="Toggle Dark/Light Mode">
+                            <div id="theme-switch-thumb" class="w-5 h-5 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full shadow-md flex items-center justify-center text-slate-950 text-[10px] transform transition-transform duration-300 translate-x-0">
+                                <i id="theme-switch-icon" class="fa-solid fa-moon"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-amber-400 gold-glow uppercase">
+                        14 Essential Supplements
+                    </h1>
+                    <div class="text-lg sm:text-2xl font-bold tracking-wider text-amber-200 mt-1 uppercase">
+                        What to Take & Why
+                    </div>
+                </div>
+                <div class="absolute right-4 hidden lg:flex items-center">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center shadow-lg border border-amber-300">
+                        <i class="fa-solid fa-pills text-3xl text-slate-950"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="w-full max-w-7xl mx-auto px-2 sm:px-4 space-y-8 mt-4">
+
+        <section class="gold-border-box rounded-2xl p-2 sm:p-4 backdrop-blur-md overflow-hidden">
+            <div class="flex items-center justify-between pb-4 mb-2 border-b border-amber-500/30 px-2">
+                <h2 class="text-lg sm:text-xl font-bold text-amber-400 flex items-center gap-2">
+                    <i class="fa-solid fa-list-check text-amber-500"></i> Supplements Master Table
+                </h2>
+                <span class="text-xs text-amber-300/80 bg-amber-950/30 dark:bg-amber-950/50 px-3 py-1 rounded-full border border-amber-500/30">
+                    Tap for details
+                </span>
+            </div>
+
+            <!-- Desktop Table View -->
+            <div class="hidden md:block overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="border-b border-amber-500/40 text-amber-400 text-xs uppercase tracking-wider bg-amber-950/10 dark:bg-amber-950/20">
+                            <th class="py-3 px-2 text-center w-12">#</th>
+                            <th class="py-3 px-3">Supplement</th>
+                            <th class="py-3 px-3">Dose</th>
+                            <th class="py-3 px-3">Recommended Time</th>
+                            <th class="py-3 px-3">Benefits</th>
+                            <th class="py-3 px-3 text-center">Priority</th>
+                            <th class="py-3 px-3 text-center">Count / Units</th>
+                            <th class="py-3 px-3 text-right">Price (EGP)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="supplements-table-body" class="divide-y divide-amber-950/30 text-sm">
+                        <!-- Populated via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Mobile Card View -->
+            <div class="md:hidden grid grid-cols-1 gap-3" id="supplements-mobile-grid">
+                <!-- Populated via JavaScript -->
+            </div>
+        </section>
+
+        <section class="gold-border-box rounded-2xl bg-gradient-to-r from-amber-950/40 via-[var(--card-bg)] to-amber-950/40 p-4 sm:p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-start gap-4">
+                <div class="p-3 rounded-xl bg-amber-500/20 border border-amber-500/50 text-amber-400 text-2xl flex-shrink-0">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+                <div>
+                    <h3 class="text-amber-400 font-bold text-sm sm:text-base">Safety & Interaction Notice</h3>
+                    <p class="text-xs sm:text-sm text-[var(--text-muted)] mt-1 leading-relaxed">
+                        Do not combine overlapping vitamins/minerals blindly; iron and high-dose vitamin D should be used when indicated. Check package strength and clinician advice.
+                    </p>
+                </div>
+            </div>
+            <div class="bg-[var(--bg-main)] border-2 border-amber-500 rounded-xl px-6 py-3 text-center flex-shrink-0 shadow-lg w-full sm:w-auto">
+                <div class="text-xs text-amber-400 uppercase font-semibold tracking-wider">Total Purchase Price</div>
+                <div class="text-2xl sm:text-3xl font-black text-amber-300 mt-0.5">3,214 EGP</div>
+            </div>
+        </section>
+
+        <section class="gold-border-box rounded-2xl p-3 sm:p-6 backdrop-blur-md">
+            <div class="flex items-center gap-3 pb-4 mb-4 border-b border-amber-500/30">
+                <div class="p-2.5 rounded-xl bg-amber-500/20 border border-amber-500/50 text-amber-400 text-xl">
+                    <i class="fa-regular fa-calendar-days"></i>
+                </div>
+                <div>
+                    <h2 class="text-lg sm:text-xl font-bold text-amber-400 uppercase">Interactive Daily Schedule</h2>
+                    <p class="text-xs text-[var(--text-muted)]">Click any schedule card to view detailed guidelines and optimal pairing tips</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="schedule-grid">
+                <!-- Populated via JavaScript -->
+            </div>
+        </section>
+
+        <section class="gold-border-box rounded-2xl p-3 sm:p-6 backdrop-blur-md">
+            <div class="flex items-center gap-3 pb-4 mb-4 border-b border-amber-500/30">
+                <div class="p-2.5 rounded-xl bg-amber-500/20 border border-amber-500/50 text-amber-400 text-xl">
+                    <i class="fa-solid fa-heart-pulse"></i>
+                </div>
+                <div>
+                    <h2 class="text-lg sm:text-xl font-bold text-amber-400 uppercase">Interactive Lifestyle Tips</h2>
+                    <p class="text-xs text-[var(--text-muted)]">Click any tip card for deep-dive recommendations and explanations</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4" id="lifestyle-grid">
+                <!-- Populated via JavaScript -->
+            </div>
+        </section>
+
+        <section class="gold-border-box rounded-2xl p-4 sm:p-6 backdrop-blur-md">
+            <div class="flex items-center gap-3 pb-4 mb-4 border-b border-amber-500/30">
+                <div class="p-2.5 rounded-xl bg-amber-500/20 border border-amber-500/50 text-amber-400 text-xl">
+                    <i class="fa-solid fa-calculator"></i>
+                </div>
+                <div>
+                    <h2 class="text-lg sm:text-xl font-bold text-amber-400 uppercase">BMI Calculator</h2>
+                    <p class="text-xs text-[var(--text-muted)]">Calculate your body mass index and status instantly</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 items-end">
+                <div>
+                    <label class="block text-xs font-semibold text-amber-400 uppercase mb-1">Weight (kg)</label>
+                    <input type="number" id="bmi-weight" placeholder="e.g. 80" class="w-full bg-[var(--bg-main)] border border-amber-500/40 rounded-xl px-4 py-2.5 text-[var(--text-main)] focus:outline-none focus:border-amber-400 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-amber-400 uppercase mb-1">Height (cm)</label>
+                    <input type="number" id="bmi-height" placeholder="e.g. 180" class="w-full bg-[var(--bg-main)] border border-amber-500/40 rounded-xl px-4 py-2.5 text-[var(--text-main)] focus:outline-none focus:border-amber-400 text-sm">
+                </div>
+                <div>
+                    <button onclick="calculateBMI()" class="w-full bg-amber-500 text-slate-950 font-bold py-2.5 px-4 rounded-xl hover:bg-amber-400 transition-colors shadow-lg text-sm">
+                        Calculate BMI
+                    </button>
+                </div>
+            </div>
+            <div id="bmi-result-box" class="mt-4 hidden p-4 rounded-xl bg-[var(--bg-main)] border border-amber-500/30 text-center">
+                <!-- Dynamic BMI Output -->
+            </div>
+        </section>
+
+        <section class="gold-border-box rounded-2xl p-4 sm:p-6 backdrop-blur-md">
+            <div class="flex items-center justify-between pb-4 mb-4 border-b border-amber-500/30">
+                <div class="flex items-center gap-3">
+                    <div class="p-2.5 rounded-xl bg-amber-500/20 border border-amber-500/50 text-amber-400 text-xl">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-lg sm:text-xl font-bold text-amber-400 uppercase">Monthly Custom Supplement Cost Calculator</h2>
+                        <p class="text-xs text-[var(--text-muted)]">Select supplements, adjust quantities for a full 30-day month, and calculate total costs</p>
+                    </div>
+                </div>
+                <div class="hidden sm:block text-right">
+                    <div class="text-[10px] text-amber-400 uppercase font-semibold">Active Items</div>
+                    <div id="active-count-badge" class="text-lg font-black text-amber-300">13 / 13</div>
+                </div>
+            </div>
+
+            <div class="w-full overflow-x-auto">
+                <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                    <thead>
+                        <tr class="border-b border-amber-500/40 text-amber-400 text-[10px] sm:text-xs uppercase tracking-wider bg-amber-950/10 dark:bg-amber-950/20">
+                            <th class="py-2.5 px-1.5 sm:px-3">Select / Supplement</th>
+                            <th class="py-2.5 px-1.5 sm:px-3">Pack Info</th>
+                            <th class="py-2.5 px-1 sm:px-3 text-center">30d Qty</th>
+                            <th class="py-2.5 px-1 sm:px-3 text-center">Adjust</th>
+                            <th class="py-2.5 px-1.5 sm:px-3 text-right">Monthly Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody id="monthly-calculator-body" class="divide-y divide-amber-950/30">
+                        <!-- Populated via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mt-6 p-4 rounded-2xl bg-gradient-to-r from-amber-950/40 via-[var(--card-bg)] to-amber-950/40 border border-amber-500/50 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="text-xs sm:text-sm text-[var(--text-muted)]">
+                    <i class="fa-solid fa-circle-info text-amber-400 mr-1"></i> Calculations factor in package strengths and scale precisely for a 30-day requirement.
+                </div>
+                <div class="bg-[var(--bg-main)] border-2 border-amber-500 rounded-xl px-6 py-3 text-center flex-shrink-0 shadow-lg w-full sm:w-auto">
+                    <div class="text-xs text-amber-400 uppercase font-semibold tracking-wider">Total Monthly Cost</div>
+                    <div id="monthly-total-price" class="text-2xl sm:text-3xl font-black text-amber-300 mt-0.5">0 EGP</div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Custom Side Tab Back to Top Button -->
+    <div id="back-to-top" 
+         onclick="scrollToTop()" 
+         title="Back to Top" 
+         class="fixed bottom-10 right-0 z-50 flex items-center justify-center bg-gradient-to-l from-amber-500 to-amber-600 text-slate-950 font-black border-l-2 border-t-2 border-b-2 border-amber-300 shadow-2xl rounded-l-2xl px-3 py-3 cursor-pointer opacity-0 pointer-events-none transition-all duration-300 hover:pr-5 group">
+        <i id="rocket-icon" class="fa-solid fa-rocket text-xl text-slate-950 transform -rotate-45 group-hover:-translate-y-1 group-hover:scale-110 transition-transform"></i>
+    </div>
+
+    <div id="detail-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+        <div id="modal-content" class="gold-border-box bg-[var(--modal-bg)] w-full max-w-xl rounded-2xl p-6 relative transform scale-95 transition-transform duration-300 shadow-2xl max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal()" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 text-amber-600 dark:text-amber-400 hover:bg-amber-500 hover:text-slate-950 flex items-center justify-center border border-amber-500/40 transition-colors z-10">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div id="modal-body">
+                <!-- Dynamic Content -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const supplementsData = [
+            {
+                id: 1,
+                name: "Creatine",
+                subtitle: "Monohydrate",
+                icon: "fa-solid fa-dumbbell",
+                dose: "3–5 g daily",
+                time: "Any time (preferably around workout, consistently)",
+                benefits: "Increases strength, endurance & muscle recovery.",
+                priority: 5,
+                count: "200 scoop",
+                price: 2100,
+                packSizeUnits: 200,
+                description: "Creatine Monohydrate is the most thoroughly researched sports supplement in the world. It helps regenerate ATP stores in muscle cells, boosting raw power output, high-intensity performance, and cellular hydration.",
+                notes: "Mix with water or juice. Consistent daily use is more important than exact timing."
+            },
+            {
+                id: 2,
+                name: "Omega 3",
+                subtitle: "Omega 3 Plus",
+                icon: "fa-solid fa-fish",
+                dose: "1 capsule daily",
+                time: "After a meal",
+                benefits: "Heart, brain, eye health & reduces inflammation.",
+                priority: 5,
+                count: "30 caps",
+                price: 136,
+                packSizeUnits: 30,
+                description: "Essential fatty acids containing EPA and DHA. Supports cardiovascular health, cognitive function, retinal health, and lowers systemic inflammation.",
+                notes: "Take with a fat-containing meal for optimal absorption."
+            },
+            {
+                id: 3,
+                name: "Pre-workout",
+                subtitle: "Evolution",
+                icon: "fa-solid fa-bolt-lightning",
+                dose: "1 scoop (~22 g before training)",
+                time: "20–30 minutes before workout",
+                benefits: "Explosive energy, sharp focus & peak pumps.",
+                priority: 4,
+                count: "330g / 15 serv",
+                price: 900,
+                packSizeUnits: 15,
+                description: "Evolution Pre-workout is engineered to ignite intense training sessions. Packed with advanced energy matrices, focus enhancers, and nitric oxide boosters.",
+                notes: "Contains stimulants; avoid taking late in the evening to prevent sleep disruption. Start with a half scoop to test tolerance."
+            },
+            {
+                id: 4,
+                name: "Vitamin D",
+                subtitle: "Davalindi",
+                icon: "fa-solid fa-sun",
+                dose: "1 capsule (5,000 IU)",
+                time: "With a meal (containing fat)",
+                benefits: "Bone health, immunity & muscle function.",
+                priority: 4,
+                count: "30 caps",
+                price: 55,
+                packSizeUnits: 30,
+                description: "Fat-soluble vitamin vital for calcium absorption, immune system modulation, bone density, and hormonal balance.",
+                notes: "Must be taken with dietary fats for proper absorption."
+            },
+            {
+                id: 5,
+                name: "Magnesium",
+                subtitle: "Magnesium Plus",
+                icon: "fa-solid fa-atom",
+                dose: "1 tablet daily",
+                time: "After dinner or before bed",
+                benefits: "Muscle, nerve & sleep support.",
+                priority: 3,
+                count: "30 tablets",
+                price: 45,
+                packSizeUnits: 30,
+                description: "Crucial mineral involved in over 300 enzymatic reactions. Relaxes nervous system, improves sleep quality, prevents cramps, and supports muscle recovery.",
+                notes: "Best taken in the evening to promote deep sleep and relaxation."
+            },
+            {
+                id: 6,
+                name: "Zinc",
+                subtitle: "Octozinc",
+                icon: "fa-solid fa-shield-halved",
+                dose: "1 capsule daily",
+                time: "After food",
+                benefits: "Immunity, skin, hair & wound healing.",
+                priority: 3,
+                count: "20 caps",
+                price: 30,
+                packSizeUnits: 20,
+                description: "Essential trace mineral necessary for immune cell development, DNA synthesis, enzymatic functions, and skin health.",
+                notes: "Take after food to avoid mild nausea. Keep away from calcium/iron supplements simultaneously."
+            },
+            {
+                id: 7,
+                name: "Probiotics",
+                subtitle: "Linex Adult",
+                icon: "fa-solid fa-bacteria",
+                dose: "1 capsule daily",
+                time: "With or after food (separate from very hot drinks)",
+                benefits: "Gut health & digestion.",
+                priority: 2,
+                count: "14 caps",
+                price: 260,
+                packSizeUnits: 14,
+                description: "Beneficial live bacteria that support gut microbiome balance, enhance digestion, improve nutrient absorption, and strengthen gut barrier function.",
+                notes: "Avoid taking with hot beverages or hot food which can deactivate live cultures."
+            },
+            {
+                id: 8,
+                name: "Selenium",
+                subtitle: "Selenium Daily Vit",
+                icon: "fa-solid fa-atom",
+                dose: "1 tablet daily",
+                time: "After a meal",
+                benefits: "Antioxidant, thyroid & immunity support.",
+                priority: 2,
+                count: "30 tablets",
+                price: 155,
+                packSizeUnits: 30,
+                description: "Powerful antioxidant trace element that supports thyroid hormone metabolism, protects cells from free radical damage, and boosts immune defense.",
+                notes: "Take with food to ensure smooth gastric tolerance."
+            },
+            {
+                id: 9,
+                name: "Vitamin B12",
+                subtitle: "Milga",
+                icon: "fa-solid fa-bolt",
+                dose: "1–2 tablets daily",
+                time: "After a meal",
+                benefits: "Nerve health, energy & B12 vitamin support.",
+                priority: 2,
+                count: "30 tablets",
+                price: 108,
+                packSizeUnits: 30,
+                description: "Essential B-vitamin responsible for nerve tissue health, red blood cell formation, and neurological energy production.",
+                notes: "Take after meals, preferably in the morning or early afternoon due to energy-boosting effects."
+            },
+            {
+                id: 10,
+                name: "Folic Acid",
+                subtitle: "Folic Acid",
+                icon: "fa-solid fa-seedling",
+                dose: "1 tablet daily",
+                time: "After a meal",
+                benefits: "Prevents anemia & boosts energy.",
+                priority: 2,
+                count: "20 tablets",
+                price: 40,
+                packSizeUnits: 20,
+                description: "Vitamin B9 crucial for cell division, synthesis of DNA/RNA, and prevention of megaloblastic anemia.",
+                notes: "Works synergistically with B12 for cellular health."
+            },
+            {
+                id: 11,
+                name: "Totavit",
+                subtitle: "Totavit",
+                icon: "fa-solid fa-droplet",
+                dose: "1 tablet daily",
+                time: "After a meal",
+                benefits: "General nutrition, energy & immunity support.",
+                priority: 2,
+                count: "20 tablets",
+                price: 87,
+                packSizeUnits: 20,
+                description: "Comprehensive multivitamin and mineral complex designed to fill nutritional gaps and support overall vitality.",
+                notes: "Take after your main meal to optimize vitamin absorption."
+            },
+            {
+                id: 12,
+                name: "Chromium",
+                subtitle: "Chromium Picolinate",
+                icon: "fa-solid fa-cube",
+                dose: "1 capsule daily",
+                time: "With a meal",
+                benefits: "Blood sugar control & metabolism.",
+                priority: 2,
+                count: "20 caps",
+                price: 60,
+                packSizeUnits: 20,
+                description: "Trace mineral that enhances insulin sensitivity, helps regulate blood glucose levels, and assists in macronutrient metabolism.",
+                notes: "Take with carbohydrate-containing meals for best blood sugar regulation."
+            },
+            {
+                id: 13,
+                name: "Iron",
+                subtitle: "Irolamin",
+                icon: "fa-solid fa-circle-dot",
+                dose: "1 capsule daily",
+                time: "With a meal",
+                benefits: "Prevents anemia & boosts energy.",
+                priority: 0,
+                count: "30 caps",
+                price: 138,
+                packSizeUnits: 30,
+                description: "Essential mineral for hemoglobin synthesis and oxygen transport throughout the body. Use only if indicated.",
+                notes: "Keep at least 2 hours away from coffee, tea, dairy, zinc, and magnesium. Take only if deficiency or specific need is identified."
+            }
+        ];
+
+        const scheduleData = [
+            {
+                time: "Before Workout",
+                timeRange: "(20 – 30 min prior)",
+                icon: "fa-solid fa-bolt-lightning",
+                products: "Pre-workout (Evolution)",
+                dose: "1 scoop (~22 g)",
+                notes: "Take with water on an empty or lightly fueled stomach.",
+                detailedAdvice: "Pre-workout is designed to spike adrenaline, mental acuity, and vasodilation right before lifting. Consume 20–30 minutes before stepping into the gym."
+            },
+            {
+                time: "After Breakfast",
+                timeRange: "(7 – 10 AM)",
+                icon: "fa-solid fa-sun",
+                products: "Omega 3 Plus, Selenium Daily Vit, Totavit, Folic Acid (if used)",
+                dose: "As per each product",
+                notes: "Take with food. Stay consistent.",
+                detailedAdvice: "This morning window is optimal for fat-soluble vitamins (Omega-3) and metabolic micronutrients. Taking them with a hearty breakfast enhances bioavailability and supplies steady energy throughout your morning activities."
+            },
+            {
+                time: "After Lunch",
+                timeRange: "(12 – 2 PM)",
+                icon: "fa-solid fa-utensils",
+                products: "Octozinc, Chromium",
+                dose: "As per each product",
+                notes: "Take with food.",
+                detailedAdvice: "Zinc and Chromium are best absorbed with your mid-day meal. Taking zinc with food prevents mild gastric discomfort, while chromium assists in carbohydrate metabolism right when you consume lunch."
+            },
+            {
+                time: "Separate Time",
+                timeRange: "(4 – 6 PM)",
+                icon: "fa-regular fa-clock",
+                products: "Irolamin (only if indicated)",
+                dose: "As per each product",
+                notes: "Keep at least 2 hours away from coffee, dairy, and zinc/magnesium.",
+                detailedAdvice: "Iron absorption is heavily inhibited by calcium (dairy), polyphenols (tea/coffee), and competing divalent minerals like zinc and magnesium. Isolate iron in the afternoon between meals for maximum hemoglobin synthesis."
+            },
+            {
+                time: "After Dinner",
+                timeRange: "(7 – 9 PM)",
+                icon: "fa-solid fa-moon",
+                products: "Magnesium Plus, Milga",
+                dose: "As per each product",
+                notes: "Take with food.",
+                detailedAdvice: "Magnesium relaxes smooth muscle tissue and nervous excitation, while B-vitamins (Milga) support neurological recovery. Evening administration prepares your body for restorative sleep."
+            },
+            {
+                time: "Before Bed",
+                timeRange: "(10 – 11 PM)",
+                icon: "fa-solid fa-bed",
+                products: "Linex Adult",
+                dose: "As per package directions",
+                notes: "With or after food (if it's the package).",
+                detailedAdvice: "Probiotics populate the gut microbiome overnight when digestive motility slows down, allowing beneficial flora to adhere effectively to intestinal walls."
+            },
+            {
+                time: "Any Consistent Time",
+                timeRange: "",
+                icon: "fa-solid fa-dumbbell",
+                products: "Creatine Monohydrate",
+                dose: "3–5 g daily",
+                notes: "Preferably around workout. Be consistent.",
+                detailedAdvice: "Creatine saturation inside muscle cells relies on daily cumulative intake rather than acute timing. Pair with plenty of water (at least 300ml per dose)."
+            },
+            {
+                time: "With a Main Meal",
+                timeRange: "",
+                icon: "fa-solid fa-sun",
+                products: "Davalindi (if prescribed)",
+                dose: "1 capsule (5,000 IU)",
+                notes: "With a meal containing fat. Only if prescribed.",
+                detailedAdvice: "Vitamin D3 is strictly fat-soluble. Consuming it without dietary fat results in negligible systemic absorption."
+            }
+        ];
+
+        const lifestyleTips = [
+            { 
+                title: "Water Intake", 
+                desc: "Drink 4 liters of water daily", 
+                icon: "fa-solid fa-glass-water",
+                details: "Hydration is the cornerstone of metabolic function, cellular transport, and muscular recovery. Consuming 4 liters daily ensures optimal joint lubrication, toxin elimination, and prevents fatigue."
+            },
+            { 
+                title: "Quality Sleep", 
+                desc: "Sleep 7–8 hours each night", 
+                icon: "fa-solid fa-bed",
+                details: "Deep REM and non-REM sleep cycles are when growth hormone surges, muscle fibers repair, and neurological pathways consolidate. Prioritize a dark, cool room."
+            },
+            { 
+                title: "Consistent Training", 
+                desc: "Train consistently (5 days/week)", 
+                icon: "fa-solid fa-dumbbell",
+                details: "Progressive overload combined with 5 weekly training sessions stimulates protein synthesis, maintains insulin sensitivity, and preserves lean muscle tissue."
+            },
+            { 
+                title: "Balanced Diet", 
+                desc: "Eat balanced & protein-rich meals", 
+                icon: "fa-solid fa-utensils",
+                details: "Provide your body with complete amino acid profiles, complex unrefined carbohydrates, and essential fatty acids to fuel both your daily tasks and athletic recovery."
+            },
+            { 
+                title: "Morning Sun", 
+                desc: "Get natural sunlight (10–20 min daily)", 
+                icon: "fa-solid fa-sun",
+                details: "Morning solar exposure anchors your circadian rhythm, boosts natural Vitamin D synthesis, enhances alertness, and improves nocturnal melatonin production."
+            },
+            { 
+                title: "Manage Stress", 
+                desc: "Manage stress & stay positive", 
+                icon: "fa-solid fa-brain",
+                details: "Chronic psychological stress elevates cortisol, impairing immune defense and muscle hypertrophy. Practice mindfulness, deep breathing, and positive mental habits."
+            }
+        ];
+
+        // Monthly Calculator State
+        let monthlyState = {};
+        supplementsData.forEach(item => {
+            monthlyState[item.id] = {
+                selected: true,
+                monthlyQty: item.id === 2 ? 30 : 30 // 30 servings for pre-workout or standard
+            };
+        });
+
+        // Theme Toggle Functionality
+        function toggleTheme() {
+            const html = document.documentElement;
+            const switchTrack = document.getElementById('theme-switch-track');
+            const switchThumb = document.getElementById('theme-switch-thumb');
+            const switchIcon = document.getElementById('theme-switch-icon');
+
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                html.classList.add('light');
+                // Move thumb to the right (Sun)
+                switchThumb.classList.remove('translate-x-0');
+                switchThumb.classList.add('translate-x-7');
+                switchIcon.className = 'fa-solid fa-sun';
+            } else {
+                html.classList.remove('light');
+                html.classList.add('dark');
+                // Move thumb to the left (Moon)
+                switchThumb.classList.remove('translate-x-7');
+                switchThumb.classList.add('translate-x-0');
+                switchIcon.className = 'fa-solid fa-moon';
+            }
+        }
+
+        function renderPriority(priority) {
+            let stars = '';
+            for (let i = 0; i < 5; i++) {
+                if (i < priority) {
+                    stars += `<i class="fa-solid fa-star text-amber-400 text-[10px]"></i>`;
+                } else {
+                    stars += `<i class="fa-regular fa-star text-slate-500 text-[10px]"></i>`;
+                }
+            }
+            return `<div class="flex items-center justify-center gap-0.5">${stars}</div>`;
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const tableBody = document.getElementById('supplements-table-body');
+            const mobileGrid = document.getElementById('supplements-mobile-grid');
+
+            supplementsData.forEach((item) => {
+                // Desktop row
+                const tr = document.createElement('tr');
+                tr.className = "border-b border-amber-950/20 table-row-hover cursor-pointer";
+                tr.onclick = () => openSupplementModal(item);
+                tr.innerHTML = `
+                    <td class="py-3 px-2 text-center font-bold text-amber-500">${item.id}</td>
+                    <td class="py-3 px-3">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-8 h-8 rounded-lg bg-[var(--bg-main)] border border-amber-500/40 flex items-center justify-center text-amber-500 flex-shrink-0">
+                                <i class="${item.icon}"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-[var(--text-main)] text-sm">${item.name}</div>
+                                <div class="text-xs text-[var(--text-muted)]">${item.subtitle}</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="py-3 px-3 text-[var(--text-muted)] text-xs font-medium">${item.dose}</td>
+                    <td class="py-3 px-3 text-[var(--text-muted)] text-xs">${item.time}</td>
+                    <td class="py-3 px-3 text-[var(--text-muted)] text-xs max-w-xs">${item.benefits}</td>
+                    <td class="py-3 px-3 text-center">${renderPriority(item.priority)}</td>
+                    <td class="py-3 px-3 text-center text-[var(--text-muted)] text-xs font-semibold">${item.count}</td>
+                    <td class="py-3 px-3 text-right font-bold text-amber-600 dark:text-amber-300">${item.price.toLocaleString()}</td>
+                `;
+                tableBody.appendChild(tr);
+
+                // Mobile card
+                const card = document.createElement('div');
+                card.className = "bg-[var(--bg-main)] border border-amber-500/30 rounded-xl p-3 flex flex-col justify-between gap-2 cursor-pointer active:scale-[0.99] transition-all hover:border-amber-400";
+                card.onclick = () => openSupplementModal(item);
+                card.innerHTML = `
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <span class="w-6 h-6 rounded bg-amber-500/20 text-amber-500 font-bold text-xs flex items-center justify-center border border-amber-500/40">${item.id}</span>
+                            <div class="flex items-center gap-2">
+                                <div class="w-7 h-7 rounded-lg bg-[var(--card-bg)] border border-amber-500/30 flex items-center justify-center text-amber-500 text-xs">
+                                    <i class="${item.icon}"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-[var(--text-main)] text-sm leading-tight">${item.name}</div>
+                                    <div class="text-[10px] text-[var(--text-muted)]">${item.subtitle}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-amber-600 dark:text-amber-300 font-extrabold text-sm">${item.price} EGP</div>
+                            <div class="text-[10px] text-[var(--text-muted)]">${item.count}</div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-1 text-[11px] bg-[var(--card-bg)] p-2 rounded-lg border border-amber-500/20 text-[var(--text-muted)]">
+                        <div><strong class="text-amber-500/90">Dose:</strong> ${item.dose}</div>
+                        <div><strong class="text-amber-500/90">Time:</strong> ${item.time}</div>
+                    </div>
+                    <div class="flex items-center justify-between text-xs pt-1 border-t border-amber-500/20">
+                        <span class="text-[var(--text-muted)] truncate max-w-[200px]">${item.benefits}</span>
+                        <div>${renderPriority(item.priority)}</div>
+                    </div>
+                `;
+                mobileGrid.appendChild(card);
+            });
+
+            renderScheduleGrid();
+            renderLifestyleGrid();
+            renderMonthlyCalculator();
+        });
+
+        // Render Schedule Grid
+        function renderScheduleGrid() {
+            const scheduleGrid = document.getElementById('schedule-grid');
+            scheduleGrid.innerHTML = '';
+            scheduleData.forEach((sched) => {
+                const sCard = document.createElement('div');
+                sCard.className = "bg-[var(--bg-main)] border border-amber-500/30 rounded-xl p-4 flex flex-col justify-between gap-3 shadow-md cursor-pointer hover:border-amber-400 transition-all";
+                sCard.onclick = () => openScheduleModal(sched);
+                sCard.innerHTML = `
+                    <div>
+                        <div class="flex items-center gap-2 text-amber-500 font-bold text-sm mb-1">
+                            <i class="${sched.icon} text-amber-500"></i>
+                            <span>${sched.time}</span>
+                            <span class="text-xs text-[var(--text-muted)] font-normal">${sched.timeRange}</span>
+                        </div>
+                        <div class="text-xs text-amber-600 dark:text-amber-200/90 font-semibold mt-2">Products:</div>
+                        <div class="text-xs text-[var(--text-main)] mt-0.5 leading-relaxed">${sched.products}</div>
+                    </div>
+                    <div class="space-y-1.5 pt-2 border-t border-amber-500/20 text-[11px] flex items-center justify-between">
+                        <div><span class="text-amber-500 font-medium">Notes:</span> <span class="text-[var(--text-muted)]">${sched.notes}</span></div>
+                        <span class="text-[10px] text-amber-500 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/30">Tap for advice</span>
+                    </div>
+                `;
+                scheduleGrid.appendChild(sCard);
+            });
+        }
+
+        // Render Lifestyle Tips Grid
+        function renderLifestyleGrid() {
+            const lifestyleGrid = document.getElementById('lifestyle-grid');
+            lifestyleGrid.innerHTML = '';
+            lifestyleTips.forEach((tip) => {
+                const lCard = document.createElement('div');
+                lCard.className = "bg-[var(--bg-main)] border border-amber-500/30 rounded-xl p-3 text-center flex flex-col items-center justify-center gap-2 hover:border-amber-400 transition-colors cursor-pointer";
+                lCard.onclick = () => openTipModal(tip);
+                lCard.innerHTML = `
+                    <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/40 flex items-center justify-center text-amber-500 text-lg">
+                        <i class="${tip.icon}"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs font-bold text-amber-600 dark:text-amber-300 uppercase">${tip.title}</div>
+                        <div class="text-[11px] text-[var(--text-muted)] mt-0.5 leading-snug">${tip.desc}</div>
+                    </div>
+                `;
+                lifestyleGrid.appendChild(lCard);
+            });
+        }
+
+        // Render Monthly Calculator Table
+        function renderMonthlyCalculator() {
+            const tbody = document.getElementById('monthly-calculator-body');
+            tbody.innerHTML = '';
+            let totalMonthlyPrice = 0;
+            let activeCount = 0;
+
+            supplementsData.forEach((item) => {
+                const state = monthlyState[item.id];
+                if (state.selected) {
+                    activeCount++;
+                    const costPerUnit = item.price / item.packSizeUnits;
+                    totalMonthlyPrice += Math.round(costPerUnit * state.monthlyQty);
+                }
+
+                const itemMonthlyCost = Math.round((item.price / item.packSizeUnits) * state.monthlyQty);
+
+                const tr = document.createElement('tr');
+                tr.className = "border-b border-amber-950/20 hover:bg-amber-950/5 transition-colors";
+                tr.innerHTML = `
+                    <td class="py-2.5 px-1.5 sm:px-3">
+                        <div class="flex items-center gap-1.5 sm:gap-2.5">
+                            <input type="checkbox" ${state.selected ? 'checked' : ''} onchange="toggleMonthlyItem(${item.id})" class="w-4 h-4 rounded bg-[var(--bg-main)] border-amber-500/50 accent-amber-400 focus:ring-amber-500 cursor-pointer flex-shrink-0">
+                            <div class="flex items-center gap-1.5 sm:gap-2 min-w-0">
+                                <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-[var(--bg-main)] border border-amber-500/30 flex items-center justify-center text-amber-500 text-[10px] sm:text-xs flex-shrink-0">
+                                    <i class="${item.icon}"></i>
+                                </div>
+                                <div class="min-w-0">
+                                    <div class="font-bold text-[var(--text-main)] text-xs sm:text-sm truncate">${item.name}</div>
+                                    <div class="text-[9px] sm:text-[10px] text-[var(--text-muted)] truncate">${item.subtitle}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="py-2.5 px-1.5 sm:px-3 text-[11px] sm:text-xs text-[var(--text-muted)]">
+                        <div class="whitespace-nowrap">${item.price} EGP</div>
+                        <div class="text-[9px] sm:text-[10px] text-[var(--text-muted)] whitespace-nowrap">${item.count}</div>
+                    </td>
+                    <td class="py-2.5 px-1 sm:px-3 text-center">
+                        <span class="inline-block px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded-lg bg-[var(--bg-main)] border border-amber-500/30 text-amber-600 dark:text-amber-300 font-bold text-[10px] sm:text-xs whitespace-nowrap">
+                            ${state.monthlyQty} u / 30d
+                        </span>
+                    </td>
+                    <td class="py-2.5 px-1 sm:px-3 text-center">
+                        <div class="inline-flex items-center gap-0.5 sm:gap-1 bg-[var(--bg-main)] border border-amber-500/30 rounded-lg p-0.5">
+                            <button onclick="adjustMonthlyQty(${item.id}, -5)" class="w-5 h-5 sm:w-6 sm:h-6 rounded bg-slate-200 dark:bg-slate-800 text-amber-600 dark:text-amber-400 hover:bg-amber-500 hover:text-slate-950 font-bold text-[10px] sm:text-xs flex items-center justify-center transition-colors">-</button>
+                            <button onclick="adjustMonthlyQty(${item.id}, 5)" class="w-5 h-5 sm:w-6 sm:h-6 rounded bg-slate-200 dark:bg-slate-800 text-amber-600 dark:text-amber-400 hover:bg-amber-500 hover:text-slate-950 font-bold text-[10px] sm:text-xs flex items-center justify-center transition-colors">+</button>
+                        </div>
+                    </td>
+                    <td class="py-2.5 px-1.5 sm:px-3 text-right font-black text-amber-600 dark:text-amber-300 text-xs sm:text-sm whitespace-nowrap">
+                        ${state.selected ? itemMonthlyCost.toLocaleString() + ' EGP' : '<span class="text-[var(--text-muted)] font-normal text-[10px]">Excluded</span>'}
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            document.getElementById('monthly-total-price').innerText = totalMonthlyPrice.toLocaleString() + ' EGP';
+            document.getElementById('active-count-badge').innerText = `${activeCount} / ${supplementsData.length}`;
+        }
+
+        function toggleMonthlyItem(id) {
+            monthlyState[id].selected = !monthlyState[id].selected;
+            renderMonthlyCalculator();
+        }
+
+        function adjustMonthlyQty(id, amount) {
+            monthlyState[id].monthlyQty += amount;
+            if (monthlyState[id].monthlyQty < 5) monthlyState[id].monthlyQty = 5;
+            if (monthlyState[id].monthlyQty > 300) monthlyState[id].monthlyQty = 300;
+            renderMonthlyCalculator();
+        }
+
+        // BMI Calculation Logic
+        function calculateBMI() {
+            const weightInput = document.getElementById('bmi-weight');
+            const heightInput = document.getElementById('bmi-height');
+            const resultBox = document.getElementById('bmi-result-box');
+
+            const weight = parseFloat(weightInput.value);
+            const heightCm = parseFloat(heightInput.value);
+
+            if (!weight || !heightCm || weight <= 0 || heightCm <= 0) {
+                resultBox.classList.remove('hidden');
+                resultBox.innerHTML = `<span class="text-red-400 font-bold text-sm"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Please enter valid weight and height values.</span>`;
+                return;
+            }
+
+            const heightM = heightCm / 100;
+            const bmi = (weight / (heightM * heightM)).toFixed(1);
+
+            let category = "";
+            let colorClass = "";
+            let advice = "";
+
+            if (bmi < 18.5) {
+                category = "Underweight";
+                colorClass = "text-blue-400";
+                advice = "Consider nutrient-dense, caloric surplus nutrition alongside consistent strength training.";
+            } else if (bmi >= 18.5 && bmi < 25) {
+                category = "Normal Weight";
+                colorClass = "text-emerald-400";
+                advice = "Excellent! Maintain your balanced supplement protocol, hydration, and regular exercise.";
+            } else if (bmi >= 25 && bmi < 30) {
+                category = "Overweight";
+                colorClass = "text-amber-400";
+                advice = "Focus on clean protein sources, caloric maintenance or slight deficit, and consistent training.";
+            } else {
+                category = "Obese";
+                colorClass = "text-rose-400";
+                advice = "Consult a clinical nutritionist or physician for personalized guidance and structured fat loss.";
+            }
+
+            resultBox.classList.remove('hidden');
+            resultBox.innerHTML = `
+                <div class="space-y-2">
+                    <div class="text-xs uppercase text-amber-500 font-semibold tracking-wider">Your Body Mass Index (BMI)</div>
+                    <div class="text-3xl font-black ${colorClass}">${bmi}</div>
+                    <div class="text-sm font-bold text-[var(--text-main)]">${category}</div>
+                    <p class="text-xs text-[var(--text-muted)] max-w-lg mx-auto leading-relaxed mt-1">${advice}</p>
+                </div>
+            `;
+        }
+
+        // Modal Display Functions
+        function openSupplementModal(item) {
+            const modal = document.getElementById('detail-modal');
+            const modalContent = document.getElementById('modal-content');
+            const modalBody = document.getElementById('modal-body');
+
+            modalBody.innerHTML = `
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="w-14 h-14 rounded-2xl bg-[var(--bg-main)] border-2 border-amber-500 flex items-center justify-center text-amber-500 text-2xl shadow-lg">
+                        <i class="${item.icon}"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-500 text-xs font-bold border border-amber-500/30">#${item.id}</span>
+                            <span class="text-xs text-[var(--text-muted)]">${item.subtitle}</span>
+                        </div>
+                        <h2 class="text-2xl font-black text-amber-600 dark:text-amber-300 mt-0.5">${item.name}</h2>
+                    </div>
+                </div>
+
+                <div class="space-y-4 text-sm">
+                    <div class="grid grid-cols-2 gap-3 bg-[var(--bg-main)] p-3 rounded-xl border border-amber-500/20">
+                        <div>
+                            <span class="text-xs text-amber-500 block uppercase font-semibold">Dose</span>
+                            <span class="text-[var(--text-main)] font-bold">${item.dose}</span>
+                        </div>
+                        <div>
+                            <span class="text-xs text-amber-500 block uppercase font-semibold">Price</span>
+                            <span class="text-amber-600 dark:text-amber-300 font-black text-lg">${item.price} EGP</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-[var(--bg-main)] p-3 rounded-xl border border-amber-500/20 space-y-2">
+                        <div>
+                            <span class="text-xs text-amber-500 block uppercase font-semibold">Recommended Time</span>
+                            <span class="text-[var(--text-main)]">${item.time}</span>
+                        </div>
+                        <div>
+                            <span class="text-xs text-amber-500 block uppercase font-semibold">Primary Benefits</span>
+                            <span class="text-[var(--text-main)] font-medium">${item.benefits}</span>
+                        </div>
+                        <div>
+                            <span class="text-xs text-amber-500 block uppercase font-semibold">Count / Package Size</span>
+                            <span class="text-[var(--text-main)]">${item.count}</span>
+                        </div>
+                        <div>
+                            <span class="text-xs text-amber-500 block uppercase font-semibold">Priority Rating</span>
+                            <div class="mt-1">${renderPriority(item.priority)}</div>
+                        </div>
+                    </div>
+
+                    <div class="bg-amber-950/10 dark:bg-amber-950/20 p-3 rounded-xl border border-amber-500/30 space-y-1">
+                        <span class="text-xs text-amber-500 font-bold uppercase tracking-wider block"><i class="fa-solid fa-circle-info mr-1"></i> Description & Usage Notes</span>
+                        <p class="text-xs text-[var(--text-muted)] leading-relaxed">${item.description}</p>
+                        <p class="text-xs text-amber-600 dark:text-amber-200/90 italic mt-2"><strong class="not-italic text-amber-500">Pro Tip:</strong> ${item.notes}</p>
+                    </div>
+                </div>
+
+                <div class="mt-6 flex justify-end">
+                    <button onclick="closeModal()" class="px-5 py-2 rounded-xl bg-amber-500 text-slate-950 font-bold text-sm hover:bg-amber-400 transition-colors shadow-lg">
+                        Close
+                    </button>
+                </div>
+            `;
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-95');
+                modalContent.classList.add('scale-100');
+            }, 10);
+        }
+
+        function openScheduleModal(sched) {
+            const modal = document.getElementById('detail-modal');
+            const modalContent = document.getElementById('modal-content');
+            const modalBody = document.getElementById('modal-body');
+
+            modalBody.innerHTML = `
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="w-14 h-14 rounded-2xl bg-[var(--bg-main)] border-2 border-amber-500 flex items-center justify-center text-amber-500 text-2xl shadow-lg">
+                        <i class="${sched.icon}"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs text-amber-500 font-bold uppercase tracking-wider">${sched.timeRange}</span>
+                        <h2 class="text-2xl font-black text-amber-600 dark:text-amber-300 mt-0.5">${sched.time}</h2>
+                    </div>
+                </div>
+
+                <div class="space-y-4 text-sm">
+                    <div class="bg-[var(--bg-main)] p-3 rounded-xl border border-amber-500/20 space-y-2">
+                        <div>
+                            <span class="text-xs text-amber-500 block uppercase font-semibold">Recommended Products</span>
+                            <span class="text-[var(--text-main)] font-bold">${sched.products}</span>
+                        </div>
+                        <div>
+                            <span class="text-xs text-amber-500 block uppercase font-semibold">Dose Instructions</span>
+                            <span class="text-[var(--text-main)]">${sched.dose}</span>
+                        </div>
+                        <div>
+                            <span class="text-xs text-amber-500 block uppercase font-semibold">Important Notes</span>
+                            <span class="text-amber-600 dark:text-amber-200 font-medium">${sched.notes}</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-amber-950/10 dark:bg-amber-950/20 p-3 rounded-xl border border-amber-500/30 space-y-1">
+                        <span class="text-xs text-amber-500 font-bold uppercase tracking-wider block"><i class="fa-solid fa-lightbulb mr-1"></i> Expert Deep-Dive Advice</span>
+                        <p class="text-xs text-[var(--text-muted)] leading-relaxed">${sched.detailedAdvice}</p>
+                    </div>
+                </div>
+
+                <div class="mt-6 flex justify-end">
+                    <button onclick="closeModal()" class="px-5 py-2 rounded-xl bg-amber-500 text-slate-950 font-bold text-sm hover:bg-amber-400 transition-colors shadow-lg">
+                        Close
+                    </button>
+                </div>
+            `;
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-95');
+                modalContent.classList.add('scale-100');
+            }, 10);
+        }
+
+        function openTipModal(tip) {
+            const modal = document.getElementById('detail-modal');
+            const modalContent = document.getElementById('modal-content');
+            const modalBody = document.getElementById('modal-body');
+
+            modalBody.innerHTML = `
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="w-14 h-14 rounded-2xl bg-[var(--bg-main)] border-2 border-amber-500 flex items-center justify-center text-amber-500 text-2xl shadow-lg">
+                        <i class="${tip.icon}"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs text-amber-500 font-bold uppercase tracking-wider">Lifestyle Habit</span>
+                        <h2 class="text-2xl font-black text-amber-600 dark:text-amber-300 mt-0.5">${tip.title}</h2>
+                    </div>
+                </div>
+
+                <div class="space-y-4 text-sm">
+                    <div class="bg-[var(--bg-main)] p-3 rounded-xl border border-amber-500/20 space-y-1">
+                        <span class="text-xs text-amber-500 block uppercase font-semibold">Core Goal</span>
+                        <span class="text-[var(--text-main)] font-bold text-base">${tip.desc}</span>
+                    </div>
+
+                    <div class="bg-amber-950/10 dark:bg-amber-950/20 p-3 rounded-xl border border-amber-500/30 space-y-1">
+                        <span class="text-xs text-amber-500 font-bold uppercase tracking-wider block"><i class="fa-solid fa-circle-info mr-1"></i> Comprehensive Explanation</span>
+                        <p class="text-xs text-[var(--text-muted)] leading-relaxed">${tip.details}</p>
+                    </div>
+                </div>
+
+                <div class="mt-6 flex justify-end">
+                    <button onclick="closeModal()" class="px-5 py-2 rounded-xl bg-amber-500 text-slate-950 font-bold text-sm hover:bg-amber-400 transition-colors shadow-lg">
+                        Close
+                    </button>
+                </div>
+            `;
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-95');
+                modalContent.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('detail-modal');
+            const modalContent = document.getElementById('modal-content');
+            modal.classList.add('opacity-0');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        document.getElementById('detail-modal').addEventListener('click', (e) => {
+            if (e.target.id === 'detail-modal') {
+                closeModal();
+            }
+        });
+
+        // Back to top scroll listener & animation
+        const backToTopBtn = document.getElementById('back-to-top');
+        const rocketIcon = document.getElementById('rocket-icon');
+        let isLaunching = false;
+
+        window.addEventListener('scroll', () => {
+            if (isLaunching) return;
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.remove('opacity-0', 'pointer-events-none', 'translate-x-full');
+                backToTopBtn.classList.add('opacity-100', 'pointer-events-auto', 'translate-x-0');
+            } else {
+                backToTopBtn.classList.remove('opacity-100', 'pointer-events-auto', 'translate-x-0');
+                backToTopBtn.classList.add('opacity-0', 'pointer-events-none', 'translate-x-full');
+            }
+        });
+
+        function scrollToTop() {
+            if (isLaunching) return;
+            isLaunching = true;
+
+            // Trigger rocket launch animation
+            rocketIcon.classList.add('animate-rocket-launch');
+
+            // Smooth scroll to top
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+
+            // Reset rocket icon after animation finishes
+            setTimeout(() => {
+                rocketIcon.classList.remove('animate-rocket-launch');
+                backToTopBtn.classList.remove('opacity-100', 'pointer-events-auto');
+                backToTopBtn.classList.add('opacity-0', 'pointer-events-none', 'translate-x-full');
+                isLaunching = false;
+            }, 800);
+        }
+    </script>
+</body>
+</html>
